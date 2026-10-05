@@ -27,7 +27,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install
-        run: pip install fonttools brotli
+        run: pip install fonttools==4.66.1 brotli==1.2.0   # pinned: font bytes must not drift
 
       - name: Fetch data
         env:
