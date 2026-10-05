@@ -1,6 +1,6 @@
 {
  "active_days": 69,
- "all_time": 427,
+ "all_time": 428,
  "created": "2024-02-07",
  "current_streak": 1,
  "followers": 2,
@@ -11,10 +11,10 @@
   "HTML": 2373,
   "JavaScript": 310085,
   "Jupyter Notebook": 33054,
-  "Python": 1179104,
+  "Python": 1178691,
   "TypeScript": 426844
  },
- "last_year": 260,
+ "last_year": 261,
  "longest_streak": 8,
  "name": "Mehul Karwa",
  "public_repos": 16,
