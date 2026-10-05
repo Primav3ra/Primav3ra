@@ -254,14 +254,12 @@ def links():
 # ── stats ────────────────────────────────────────────────────────────────
 def stats_slice(s):
     created = dt.date.fromisoformat(s["created"])
-    cells = [(f'{s["last_year"]:,}', "contributions · 365d"), (f'{s["all_time"]:,}', "total contributions"),
-             (str(s["active_days"]), "active days · 365d"), (f'{s["longest_streak"]}d', "longest streak"),
-             (f'{s["current_streak"]}d', "current streak"), (str(s["public_repos"]), "public repos"),
-             ("1", "MOSS Hack '26 win"), (created.strftime("%b %Y"), "member since")]
+    cells = [(f'{s["last_year"]:,}', "contribs · 365d"), (f'{s["all_time"]:,}', "contribs · total"),
+             (str(s["public_repos"]), "public repos"), ("1", "MOSS '26 win"), (created.strftime("%b %Y"), "member since")]
     body = heading(48, "stats", 2) + prompt(100, f"gh stats --user {USER}")
-    cw, chh = (X1 - X0) / 4, 76
+    cw, chh = (X1 - X0 + 12) / len(cells), 76
     for i, (v, label) in enumerate(cells):
-        x, y = X0 + (i % 4) * cw, 132 + (i // 4) * (chh + 12)
+        x, y = X0 + i * cw, 132
         body += (f'<rect x="{x:g}" y="{y}" width="{cw - 12:g}" height="{chh}" rx="4" fill="{BAR}" stroke="{LINE}"/>'
                  + t(x + 16, y + 36, esc(v), 24, CYAN, 800, extra='filter="url(#glow)"')
                  + t(x + 16, y + 60, esc(label), 11.5, DIM))
@@ -270,7 +268,7 @@ def stats_slice(s):
     top = [(k, v / total) for k, v in langs[:5]]
     top.append(("Other", 1 - sum(p for _, p in top)))
     shades = ["#22d3ee", "#3b82f6", "#6366f1", "#0ea5e9", "#1e40af", FAINT]
-    y = 330
+    y = 250
     body += t(X0, y, span("top languages ", WHITE, 700) + span("by bytes, own repos", DIM), 13)
     x = X0
     bar_w = X1 - X0
@@ -282,12 +280,12 @@ def stats_slice(s):
     for (k, p), c in zip(top, shades):
         label = f"{k} {p * 100:.1f}%"
         body += f'<rect x="{lx}" y="{y + 42}" width="9" height="9" fill="{c}"/>' + t(lx + 15, y + 51, esc(label), 12, TEXT)
-        lx += 15 + adv(12) * len(label) + 22
-    body += t(X1, 420, esc(f"// last sync {s.get('updated', '')}"), 11.5, FAINT, anchor="end")
+        lx += 15 + adv(12) * len(label) + 15
+    body += t(X1, 340, esc(f"// last sync {s.get('updated', '')}"), 11.5, FAINT, anchor="end")
     desc = (f'{s["last_year"]:,} contributions in the last 365 days, {s["all_time"]:,} all time; '
-            f'{s["active_days"]} active days; longest streak {s["longest_streak"]} days; {s["public_repos"]} public repos; '
+            f'{s["public_repos"]} public repos; '
             f'member since {created:%B %Y}. Top languages: ' + ", ".join(f"{k} {p * 100:.1f}%" for k, p in top))
-    slice_svg("stats.svg", 440, body, "Stats", desc)
+    slice_svg("stats.svg", 360, body, "Stats", desc)
     return desc
 
 
@@ -368,11 +366,10 @@ def city(cal):
            f'<animateTransform attributeName="transform" type="translate" values="-40 200;920 132" dur="38s" repeatCount="indefinite"/></g>')
     busiest_d, busiest_n = max(grid.values(), key=lambda dn: (dn[1], dn[0]))
     total = sum(n for _, n in grid.values())
-    active = sum(1 for _, n in grid.values() if n)
     info = (t(X1, 236, span(f"{total:,}", CYAN, 800) + span(" contributions · last 365 days", DIM), 12.5, anchor="end")
             + t(X1, 258, span("busiest day ", DIM) + span(f"{busiest_d:%b} {busiest_d.day}", WHITE, 700)
                 + span(f" · {busiest_n}", DIM), 12.5, anchor="end")
-            + t(X1, 280, span(f"{active}", WHITE, 700) + span(" active days", DIM), 12.5, anchor="end"))
+            )
     legend = t(X0, 690, span("quiet", DIM), 11.5)
     for i, col in enumerate([GROUND] + [tr[0] for tr in TIERS]):
         legend += f'<rect x="{X0 + 52 + i * 15}" y="680" width="11" height="11" fill="{col}" stroke="{LINE}" stroke-width=".6"/>'
