@@ -1,0 +1,23 @@
+{
+ "active_days": 68,
+ "all_time": 426,
+ "created": "2024-02-07",
+ "current_streak": 0,
+ "followers": 2,
+ "languages": {
+  "Batchfile": 93,
+  "CSS": 65662,
+  "Dockerfile": 4413,
+  "HTML": 2373,
+  "JavaScript": 310085,
+  "Jupyter Notebook": 33054,
+  "Python": 1165861,
+  "TypeScript": 426844
+ },
+ "last_year": 259,
+ "longest_streak": 8,
+ "name": "Mehul Karwa",
+ "public_repos": 16,
+ "stars": 2,
+ "updated": "2026-10-05"
+}

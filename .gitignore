@@ -1,3 +1,4 @@
 .preview/
 assets/.cache/
 _build/
+__pycache__/
