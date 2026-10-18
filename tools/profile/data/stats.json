@@ -1,8 +1,8 @@
 {
- "active_days": 68,
+ "active_days": 63,
  "all_time": 439,
  "created": "2024-02-07",
- "current_streak": 1,
+ "current_streak": 0,
  "followers": 2,
  "languages": {
   "Batchfile": 93,
@@ -15,10 +15,10 @@
   "R": 15388,
   "TypeScript": 427635
  },
- "last_year": 260,
+ "last_year": 225,
  "longest_streak": 8,
  "name": "Mehul Karwa",
  "public_repos": 20,
  "stars": 2,
- "updated": "2026-10-17"
+ "updated": "2026-10-18"
 }
