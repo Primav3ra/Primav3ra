@@ -1,8 +1,8 @@
 {
- "active_days": 65,
- "all_time": 446,
+ "active_days": 62,
+ "all_time": 450,
  "created": "2024-02-07",
- "current_streak": 1,
+ "current_streak": 2,
  "followers": 2,
  "languages": {
   "Batchfile": 93,
@@ -13,12 +13,13 @@
   "Jupyter Notebook": 33054,
   "Python": 1180203,
   "R": 15388,
+  "Rust": 45,
   "TypeScript": 427635
  },
- "last_year": 232,
+ "last_year": 226,
  "longest_streak": 8,
  "name": "Mehul Karwa",
  "public_repos": 20,
  "stars": 2,
- "updated": "2026-10-24"
+ "updated": "2026-10-25"
 }
